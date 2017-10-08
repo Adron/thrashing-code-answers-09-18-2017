@@ -1,7 +1,7 @@
 package main
 
-func DeadSpace() {
-	return
+func DeadSpace(t int, e int) int {
+	return t + e
 }
 
 func Transport(TotalCars int, CarsPerHour int) float32 {
