@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Heyo")
+	fmt.Println(GimmeTheSolutionAlready(50, 75, 75))
 }

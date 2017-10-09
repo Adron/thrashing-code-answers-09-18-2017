@@ -1,21 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestStorage(test *testing.T) {
 
-	var t float32 = 24    /* 24 hours in a day. */
-	var p float32 = 5.851 /* Meters a parking space needs to be */
-	var r float32 = 1000  /* Meters of roadway distance in calculation */
-	var h float32 = 1.8   /* Cars parked per hour in a single parking spot. */
-	var e float32 = 8     /* Empty parking spots per hour for the measured distance. */
+	var t float64 = 24    /* 24 hours in a day. */
+	var p float64 = 5.851 /* Meters a parking space needs to be */
+	var r float64 = 1000  /* Meters of roadway distance in calculation */
+	var h float64 = 1.8   /* Cars parked per hour in a single parking spot. */
+	var e float64 = 8     /* Empty parking spots per hour for the measured distance. */
 
-	result := Storage(t, p, r, h, e)
-
-	if result != 7037.753 {
+	if Storage(t, p, r, h, e) != 7037.753272944796 {
 		test.Error("Failure to determine correct storage result.")
 	}
 }
@@ -27,9 +24,7 @@ func TestTransport(t *testing.T) {
 
 	result := Transport(d, h)
 
-	fmt.Println(result)
-
-	if result != 6.6666665 {
+	if result != 6.666666666666667 {
 		t.Error("Failure to determine correct transportation throughput.")
 	}
 }
@@ -42,5 +37,29 @@ func TestDeadSpace(test *testing.T) {
 	result := DeadSpace(t, e)
 	if result != 25 {
 		test.Error("Nope that isn't the correct amount of dead space.")
+	}
+}
+
+func TestGimmeTheStoragePercent(t *testing.T) {
+	result := GimmeTheSolutionAlready(50, 75, 75)
+
+	if result[0] != 25 {
+		t.Error("The storage percentage is not correct.")
+	}
+}
+
+func TestGimmeTheTransportPercent(t *testing.T) {
+	result := GimmeTheSolutionAlready(50, 75, 75)
+
+	if result[1] != 37.5 {
+		t.Error("The transport percentage is not correct.")
+	}
+}
+
+func TestGimmeTheDeadspacePercent(t *testing.T) {
+	result := GimmeTheSolutionAlready(50, 75, 75)
+
+	if result[2] != 37.5 {
+		t.Error("The dead space percentage is not correct.")
 	}
 }
